@@ -1,6 +1,5 @@
 package controller;
 
-import controller.database.DatabaseConnector;
 import controller.database.SQLStatements;
 import controller.utils.FilterCriteria;
 import controller.utils.Util;
@@ -19,8 +18,7 @@ public class ApplicationsHub implements IApplicationsHub{
     @Override
     public ArrayList<Application> getApplications(FilterCriteria criteria) {
         ArrayList<Application> applications = new ArrayList<>();
-        ResultSet rs = SQLStatements.queryApplications(criteria);
-        try {
+        try (ResultSet rs = SQLStatements.queryApplications(criteria)) {
             while (rs.next()) {
                 Application application = new Application();
                 application.setFirmName(rs.getString(1));
