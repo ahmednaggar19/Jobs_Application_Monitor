@@ -10,6 +10,7 @@ import static controller.utils.Util.getTerm;
 
 public class AddApplicationExpression implements Expression {
 
+    public static final String SOFTWARE_ENGINEER_LITERAL = "SOFTWARE_ENGINEER";
     private static String CLASS_ID = "add_application";
 
     static {
@@ -26,7 +27,7 @@ public class AddApplicationExpression implements Expression {
         application.setFirmName(params[1]);
         application.setLocation(params[2]);
         application.setTerm(getTerm(params[3]));
-        application.setRole(params[4] == "SOFTWARE_ENGINEER" ? Util.JobRole.SOFTWARE_ENGINEER : Util.JobRole.SOFTWARE_ENGINEER_INTERN);
+        application.setRole(params[4] == SOFTWARE_ENGINEER_LITERAL ? Util.JobRole.SOFTWARE_ENGINEER : Util.JobRole.SOFTWARE_ENGINEER_INTERN);
         ApplicationsHub applicationsHub = new ApplicationsHub();
         applicationsHub.addApplication(application);
         return new ArrayList<>();
